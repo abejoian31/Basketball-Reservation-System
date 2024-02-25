@@ -1,0 +1,105 @@
+<!-- <?php
+
+@include 'connect.php';
+
+if(isset($_POST['submit'])){
+
+    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+    $mobile = $_POST['mobile'];
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $user_type = $_POST['user_type'];
+
+
+
+    $select = " SELECT * FROM abcrs_form WHERE email = '$email' && mobile = '$mobile' ";
+
+    $result = mysqli_query($conn, $select);
+
+    if(mysqli_num_rows($result) > 0){
+
+        $error[] = 'GMAIL ALREADY EXIST!';
+
+    }else{
+
+
+        $insert = "INSERT INTO abcrs_form(fname, lname, mobile, email, user_type) VALUES('$fname','$lname','$mobile','$email','$user_type')";
+        mysqli_query($conn, $insert);
+
+        header('facilities.php');
+
+    }
+  
+};
+
+?>
+
+
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Basketball Court Reservation System</title>
+    <link rel="stylesheet" href="css1/styles.css">
+</head>
+
+<body>
+
+    <div class="wrapper" id="wrapper-register">
+
+        <a href="index.php">X</a>
+   
+        <div class="form-box register">
+            <h1>HOOP<span>BOOK</h1>
+            <form action="#" method="post">
+
+            <!-- <?php
+            if(isset($error)){
+                foreach($error as $error){
+                    echo '<span class="error-msg">'.$error.'</span>';
+                };
+            };
+            ?> -->
+
+                <select name="user_type">
+                    <option value="individual">Individual</option>
+                    <option value="Organized League">Organized League</option>
+                    <option value="Company Sports Fest">Company Sports Fest</option>
+                </select>
+
+                <div class="input-box">
+                    <input type="text" name="fname" autocomplete="off" required>
+                    <label>First Name</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="lname" autocomplete="off" required>
+                    <label>Last Name</label>
+                </div>
+                <div class="input-box">
+                    <input type="number" name="mobile" min="0" max="999999999999"  required>
+                    <label>Number</label>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" required>
+                    <label>Email</label>
+                </div>
+                
+                <input type="submit" class="btn" onclick="submitForm()" value="Sign Up" name="submit">
+
+            </form>
+        </div>
+
+    </div>
+    <script src="script/script.js"></script>
+
+
+   
+    
+</body>
+</html>
